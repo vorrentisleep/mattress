@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -6,6 +6,8 @@ import { toast } from "sonner";
 const Index = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     // Basic SEO setup for the landing page
@@ -51,6 +53,49 @@ const Index = () => {
     if (!existingLd) document.head.appendChild(script);
   }, []);
 
+  useEffect(() => {
+    const img = new Image();
+    img.src = "/lovable-uploads/004b277e-ebcf-4bb9-9b07-b1fb2526f038.png";
+    img.onload = () => {
+      try {
+        const canvas = document.createElement("canvas");
+        canvas.width = 1;
+        canvas.height = 1;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+        ctx.drawImage(img, 0, 0, 1, 1);
+        const d = ctx.getImageData(0, 0, 1, 1).data;
+        const [h, s, l] = rgbToHsl(d[0], d[1], d[2]);
+        wrapperRef.current?.style.setProperty("--background", `${h} ${s}% ${l}%`);
+      } catch (e) {
+        // ignore
+      }
+    };
+
+    function rgbToHsl(r: number, g: number, b: number): [number, number, number] {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h = 0, s = 0, l = (max + min) / 2;
+      if (max !== min) {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r:
+            h = (g - b) / d + (g < b ? 6 : 0);
+            break;
+          case g:
+            h = (b - r) / d + 2;
+            break;
+          case b:
+            h = (r - g) / d + 4;
+            break;
+        }
+        h /= 6;
+      }
+      return [Math.round(h * 360), Math.round(s * 100), Math.round(l * 100)];
+    }
+  }, []);
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return toast.error("Please enter a valid email address.");
@@ -67,14 +112,14 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div ref={wrapperRef} className="min-h-screen bg-background text-foreground">
       <header className="container mx-auto py-10">
         <nav aria-label="Main navigation" className="flex items-center justify-center">
           <img
             src="/lovable-uploads/004b277e-ebcf-4bb9-9b07-b1fb2526f038.png"
             alt="Vorrenti logo – luxury mattress brand"
             loading="lazy"
-            className="h-28 md:h-40 w-auto"
+            className="h-56 md:h-80 w-auto"
           />
         </nav>
       </header>
