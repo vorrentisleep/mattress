@@ -74,41 +74,14 @@ const Index = () => {
             src="/lovable-uploads/004b277e-ebcf-4bb9-9b07-b1fb2526f038.png"
             alt="Vorrenti logo – luxury mattress brand"
             loading="lazy"
-            className="h-16 w-auto"
+            className="h-28 md:h-40 w-auto"
           />
         </nav>
       </header>
 
       <main className="container mx-auto px-4">
-        <section className="grid items-center gap-10 lg:grid-cols-2">
-          <article className="flex flex-col items-start justify-center text-left">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Vorrenti Luxury Mattress – Coming Soon
-            </h1>
-            <p className="mt-4 text-muted-foreground max-w-prose">
-              Designed in Italy. Hand crafted in the USA. Be the first to know when we launch and get exclusive early access.
-            </p>
-
-            <form onSubmit={onSubmit} className="mt-6 w-full max-w-md" aria-label="Email sign up for launch updates">
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <Input
-                  type="email"
-                  inputMode="email"
-                  autoComplete="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  aria-label="Email address"
-                  required
-                />
-                <Button type="submit" disabled={loading} className="shrink-0">
-                  {loading ? "Submitting..." : "Notify Me"}
-                </Button>
-              </div>
-              <p className="mt-2 text-xs text-muted-foreground">No spam. Unsubscribe anytime.</p>
-            </form>
-          </article>
-
+        <h1 className="sr-only">Vorrenti Luxury Mattress – Coming Soon</h1>
+        <section>
           <aside className="relative">
             <img
               src="/lovable-uploads/663a0c70-1499-4351-8129-f57300f0894d.png"
@@ -117,6 +90,26 @@ const Index = () => {
               className="w-full rounded-lg shadow-lg"
             />
           </aside>
+        </section>
+        <section className="mt-8">
+          <form onSubmit={onSubmit} className="w-full max-w-md mx-auto" aria-label="Email sign up for launch updates">
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Input
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                aria-label="Email address"
+                required
+              />
+              <Button type="submit" disabled={loading} className="shrink-0">
+                {loading ? "Submitting..." : "Notify Me"}
+              </Button>
+            </div>
+            <p className="mt-2 text-xs text-muted-foreground text-center">No spam. Unsubscribe anytime.</p>
+          </form>
         </section>
       </main>
 
