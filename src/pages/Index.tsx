@@ -43,7 +43,7 @@ const Index = () => {
       "@type": "Organization",
       name: "Vorrenti",
       url: window.location.origin,
-      logo: "/lovable-uploads/004b277e-ebcf-4bb9-9b07-b1fb2526f038.png",
+      logo: "/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png",
     };
     const existingLd = document.getElementById("ld-org") as HTMLScriptElement | null;
     const script: HTMLScriptElement = existingLd || document.createElement("script");
@@ -55,7 +55,7 @@ const Index = () => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = "/lovable-uploads/004b277e-ebcf-4bb9-9b07-b1fb2526f038.png";
+    img.src = "/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png";
     img.onload = () => {
       try {
         const canvas = document.createElement("canvas");
@@ -116,7 +116,7 @@ const Index = () => {
       <header className="container mx-auto py-10">
         <nav aria-label="Main navigation" className="flex items-center justify-center">
           <img
-            src="/lovable-uploads/004b277e-ebcf-4bb9-9b07-b1fb2526f038.png"
+            src="/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png"
             alt="Vorrenti logo – luxury mattress brand"
             loading="lazy"
             className="h-56 md:h-80 w-auto"
