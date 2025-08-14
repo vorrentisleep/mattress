@@ -59,16 +59,36 @@ const Index = () => {
     img.onload = () => {
       try {
         const canvas = document.createElement("canvas");
-        canvas.width = 1;
-        canvas.height = 1;
+        canvas.width = img.width;
+        canvas.height = img.height;
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
-        ctx.drawImage(img, 0, 0, 1, 1);
-        const d = ctx.getImageData(0, 0, 1, 1).data;
-        const [h, s, l] = rgbToHsl(d[0], d[1], d[2]);
+        ctx.drawImage(img, 0, 0);
+        
+        // Sample multiple pixels from the background area to get better color average
+        const samples = [
+          ctx.getImageData(50, 50, 1, 1).data,
+          ctx.getImageData(100, 100, 1, 1).data,
+          ctx.getImageData(200, 200, 1, 1).data,
+          ctx.getImageData(300, 300, 1, 1).data
+        ];
+        
+        // Average the RGB values
+        let avgR = 0, avgG = 0, avgB = 0;
+        samples.forEach(sample => {
+          avgR += sample[0];
+          avgG += sample[1];
+          avgB += sample[2];
+        });
+        avgR = Math.floor(avgR / samples.length);
+        avgG = Math.floor(avgG / samples.length);
+        avgB = Math.floor(avgB / samples.length);
+        
+        const [h, s, l] = rgbToHsl(avgR, avgG, avgB);
         wrapperRef.current?.style.setProperty("--background", `${h} ${s}% ${l}%`);
       } catch (e) {
-        // ignore
+        // Fallback to the navy blue color from the logo if sampling fails
+        wrapperRef.current?.style.setProperty("--background", "220 20% 15%");
       }
     };
 
