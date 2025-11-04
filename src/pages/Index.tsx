@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import logoImage from "/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png";
+import mattressImage from "/lovable-uploads/663a0c70-1499-4351-8129-f57300f0894d.png";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -43,7 +45,7 @@ const Index = () => {
       "@type": "Organization",
       name: "Vorrenti",
       url: window.location.origin,
-      logo: "/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png",
+      logo: logoImage,
     };
     const existingLd = document.getElementById("ld-org") as HTMLScriptElement | null;
     const script: HTMLScriptElement = existingLd || document.createElement("script");
@@ -55,7 +57,7 @@ const Index = () => {
 
   useEffect(() => {
     const img = new Image();
-    img.src = "/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png";
+    img.src = logoImage;
     img.onload = () => {
       try {
         const canvas = document.createElement("canvas");
@@ -136,7 +138,7 @@ const Index = () => {
       <header className="container mx-auto py-10">
         <nav aria-label="Main navigation" className="flex items-center justify-center">
           <img
-            src="/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png"
+            src={logoImage}
             alt="Vorrenti logo – luxury mattress brand"
             loading="lazy"
             className="h-56 md:h-80 w-auto"
@@ -149,7 +151,7 @@ const Index = () => {
         <section>
           <aside className="relative">
             <img
-              src="/lovable-uploads/663a0c70-1499-4351-8129-f57300f0894d.png"
+              src={mattressImage}
               alt="Vorrenti luxury mattress in an elegant bedroom"
               loading="lazy"
               className="w-full rounded-lg shadow-lg"
