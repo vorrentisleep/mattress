@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
-import logoImage from "/lovable-uploads/4cbe2aaa-4a4d-457b-b8cd-8555fba83e6f.png";
-import mattressImage from "/lovable-uploads/663a0c70-1499-4351-8129-f57300f0894d.png";
+import logoImage from "@/assets/vorrenti-logo.png";
+import mattressImage from "@/assets/vorrenti-mattress.png";
 
 const Index = () => {
   const [email, setEmail] = useState("");
