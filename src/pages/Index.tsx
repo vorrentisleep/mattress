@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import logoImage from "@/assets/vorrenti-logo.png";
-import mattressImage from "@/assets/vorrenti-mattress.png";
+import mattressImage from "@/assets/vorrenti-mattress-new.png";
 
 const Index = () => {
   const [email, setEmail] = useState("");
