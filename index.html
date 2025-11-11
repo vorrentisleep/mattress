@@ -19,6 +19,12 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Redirect to hash route if no hash is present (for GitHub Pages)
+      if (!window.location.hash) {
+        window.location.href = window.location.href + '#/';
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
